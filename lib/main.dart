@@ -5,6 +5,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:untitled/database/hive_db.dart';
 import 'package:untitled/sreens/firstscreen.dart';
 import 'package:untitled/sreens/languageLoca.dart';
 import 'package:untitled/sreens/localization.dart';
@@ -19,9 +20,7 @@ SharedPreferences? mySharedPreferences;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  Directory dir = await getApplicationDocumentsDirectory();
-  await Hive.initFlutter(dir.path);
-  await Hive.openBox('my box');
+  HiveDB.init();
   mySharedPreferences = await SharedPreferences.getInstance();
   runApp(MyApp());
 }
