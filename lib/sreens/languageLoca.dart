@@ -39,6 +39,6 @@ Future<Locale>setlocale(String languageCode)async{
  }
 
   changeLang(BuildContext context ,  lang) async {
-  Locale trans = await setlocale(languageCode);
+  Locale trans = await setlocale(lang);
   MyApp.setLocalLang(context, trans);
   }

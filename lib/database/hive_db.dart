@@ -21,12 +21,16 @@ class HiveDB {
       ..init(path)
       ..registerAdapter(ResultModelAdapter());
   }
-
+/*
+* [HiveDB().createResult(ResultModel(wax:2135.253,frag:21.21534))]
+* */
   createResult(ResultModel resultModel)async {
    Box box = await _openHive();
     box.put(0, resultModel);
   }
-
+/*
+* [ await HiveDB().readResult() ]
+* */
   Future<ResultModel> readResult()async{
     Box box = await _openHive();
    return box.get(0);

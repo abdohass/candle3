@@ -71,7 +71,7 @@ class _MyAppState extends State<MyApp> {
         primarySwatch: Colors.blue,
       ),
       home: const MyHomePage(),
-      localizationsDelegates: [
+      localizationsDelegates:  [
         AppLocale.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate
