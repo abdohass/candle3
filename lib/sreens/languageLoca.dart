@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/main.dart';
+import 'package:untitled/models/languaesmodel.dart';
 import 'costCalculation.dart';
 import 'localization.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -7,8 +8,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 
 String languageCode ='langeCode' ;
-String English ='EN';
-String Arabic ='AR';
+const String English ='en';
+const String Arabic ='ar';
 
 Future<Locale>setlocale(String languageCode)async{
 
@@ -19,11 +20,11 @@ Future<Locale>setlocale(String languageCode)async{
  Locale switchlangs(lang) {
   Locale trans ;
   switch (lang){
-    case 1:
+    case  English:
       trans = Locale(English , 'US');
       break;
-    case 2:
-      trans = Locale(Arabic , 'AR');
+    case Arabic:
+      trans = Locale(Arabic , 'EG');
       break;
     default :
       trans = Locale(English , 'US');
@@ -33,12 +34,12 @@ Future<Locale>setlocale(String languageCode)async{
  }
 
  Future getlocale()async {
-  SharedPreferences preferences = await await SharedPreferences.getInstance();
-  String languageCode = preferences.getString('langeCode')??English ;
+  SharedPreferences preferences =  await SharedPreferences.getInstance();
+  String languageCode = preferences.getString('langeCode')?? Arabic ;
   return switchlangs(languageCode);
  }
 
-  changeLang(BuildContext context ,  lang) async {
-  Locale trans = await setlocale(lang);
+  changeLang(BuildContext context ,  Language lang) async {
+  Locale trans = await setlocale(lang.languageCode);
   MyApp.setLocalLang(context, trans);
   }
