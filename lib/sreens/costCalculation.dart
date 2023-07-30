@@ -29,6 +29,10 @@ class _CostCalculationState extends State<CostCalculation> {
   int wicknum =0;
   String resultwick ='0';
   String unitwax ="g";
+  String costpercandle='0';
+  String waxpricepercandle='0';
+  String oilpricepercandle='0';
+
   //
   TextEditingController waxPricelController = TextEditingController();
   TextEditingController waxwightController = TextEditingController();
@@ -72,7 +76,7 @@ class _CostCalculationState extends State<CostCalculation> {
         waxPrice= double.parse(waxPricelController.text);
       }
       else {
-        waxPrice = 0 ;
+        waxPrice = 1;
       }
       print('total wight $waxPrice');
     });
@@ -83,7 +87,7 @@ class _CostCalculationState extends State<CostCalculation> {
         waxwWeight= double.parse(waxwightController.text);
       }
       else {
-        waxwWeight =  0 ;
+        waxwWeight =  1;
         print('total wight $waxwWeight');
       }
     });
@@ -132,6 +136,7 @@ class _CostCalculationState extends State<CostCalculation> {
     setState(() {
       if (wickPriceController.text != '') {
         wickPrice =double.parse(wickPriceController.text) ;
+
       }
       else {
         wickPrice= 0;
@@ -153,10 +158,47 @@ class _CostCalculationState extends State<CostCalculation> {
     setState(() {
       resultWaxca = (waxPrice*waxwWeight).toString();
 
+      resultOilca =(oilPrice*oilWight).toString();
+      resultjar =(jarnum*jarPrice).toString();
+      resultwick=(wickPrice*wicknum).toString();
+
+       costpercandle=resultWaxca+resultOilca+resultjar+resultwick;
+       waxpricepercandle=resultWaxca;
+      oilpricepercandle=resultOilca;
+
+
+      if (double.parse(resultWaxca) > 1000 ||
+          double.parse(resultOilca) > 1000 ||
+          double.parse(resultjar) > 1000 ||
+          double.parse(resultwick) > 1000) {
+        // Convert to grams if the result is greater than 1000
+        if (double.parse(resultWaxca) > 1000) {
+          resultWaxca = (double.parse(resultWaxca) / 1000).toStringAsFixed(2) +"kg";
+        }
+        if (double.parse(resultOilca) > 1000) {
+          resultOilca = (double.parse(resultOilca) / 1000).toStringAsFixed(2) +"kg";
+        }
+        if (double.parse(resultjar) > 1000) {
+          resultjar = (double.parse(resultjar) / 1000).toStringAsFixed(2) ;
+        }
+        if (double.parse(resultwick) > 1000) {
+          resultwick = (double.parse(resultwick) / 1000).toStringAsFixed(2)  ;
+        }
+      }
+
+
+
+
+
     });
 
-    print(resultWaxca);
-    print("$waxwWeight");
+    // setState(() {
+    //   resultjar = (jarPrice*jarnum).toString();
+    //
+    // });
+
+
+
 
 
 
@@ -172,7 +214,7 @@ class _CostCalculationState extends State<CostCalculation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: CustomColor.secondary,
+      backgroundColor: CustomColor.containerColor,
       appBar: AppBar(
         title: const Text('cost calculator'),
       ),
@@ -183,7 +225,7 @@ class _CostCalculationState extends State<CostCalculation> {
           children: [
 
             Container(
-              height: 800,
+              height: 450,
               child: GridView.count(
                 primary: false,
                 padding: const EdgeInsets.all(20),
@@ -198,8 +240,10 @@ class _CostCalculationState extends State<CostCalculation> {
                 children: <Widget>[
                   Container(
                     // height: 50,
-                    padding: const EdgeInsets.only(top: 1),
-                    color: Colors.teal[100],
+                    padding: const EdgeInsets.only(top: 0),
+                    color: Colors.teal[200],
+
+                    //color: Colors.teal[100],
                     child:  Column(
                       children: [
                         const Text("wax calc"),
@@ -217,16 +261,30 @@ class _CostCalculationState extends State<CostCalculation> {
                             //
                             //  });
 
-                             controller: waxwightController, onChange: (String ) { costcal() ;},),
+                             controller: waxwightController,
+                            costcall:  () {
+                               print("okkkkkkkkkkkkkkkkkkkk");
+                              // setState(() {
+                              //
+                              costcal();
+                            //});
+
+
+                            },),
                         ),
                         Expanded(
                           child: TextFieldTitle(
                             title: 'wax price',
-                            onChange: (v) { setState(() {
+                            costcall : () {
+                              //setState(() {
 
                               costcal();
+                              updatewaxPrice();
+                              updatwaxwight();
+                              // print("waxxx$waxPrice");
+                              // print("wighhh$waxwWeight");
 
-                            });
+                            //});
 
                             }, controller: waxPricelController,),
                         ),
@@ -247,9 +305,9 @@ class _CostCalculationState extends State<CostCalculation> {
                         Expanded(
                           child: TextFieldTitle(
                             title: 'oil wight',
-                            onChange: (v) { setState(() {
+                            costcall: () { setState(() {
 
-                              print('oil wight');
+
 
                             });
 
@@ -257,33 +315,33 @@ class _CostCalculationState extends State<CostCalculation> {
                         ),
                         Expanded(
                           child: TextFieldTitle(
-                            title: 'wax price',
-                            onChange: (v) { setState(() {
+                            title: 'oil price',
+                            costcall: () { setState(() {
 
-                              print('wax pice');
+                              costcal();
 
                             });
 
                             }, controller: oilPriceController,),
                         ),
-                        TextTitle(title: 'oil claculation', value: "resultoilcal "),
+                        TextTitle(title: 'oil claculation', value: resultOilca),
 
 
                       ],
                     ),
                   ),
                   Container(
-                    padding: const EdgeInsets.only(top: 30),
-                    color: Colors.teal[300],
+                    padding: const EdgeInsets.only(top: 10),
+                    color: Colors.teal[200],
                     child:  Column(
                       children: [
                         const Text("jar calc"),
                         Expanded(
                           child: TextFieldTitle(
                             title: 'number of jar',
-                            onChange: (v) { setState(() {
+                            costcall: () { setState(() {
 
-                              print('jar price');
+                              costcal();
 
                             });
 
@@ -292,32 +350,35 @@ class _CostCalculationState extends State<CostCalculation> {
                         Expanded(
                           child: TextFieldTitle(
                             title: 'jar price',
-                            onChange: (v) { setState(() {
+                            costcall: () { setState(() {
 
-                              print('jar  pice');
+                              costcal();
 
                             });
 
                             }, controller: jarPriceController,),
                         ),
-                        TextTitle(title: 'jar claculation', value: "resultjarcal "),
+                        TextTitle(title: 'jar claculation', value:  resultjar),
 
 
                       ],
                     ),
                   ),
                   Container(
-                    padding: const EdgeInsets.only(top: 20),
-                    color: Colors.teal[400],
+
+                    padding: const EdgeInsets.only(top: 10),
+                    color: Colors.teal[200],
                     child:  Column(
                       children: [
                         const Text("wick calc"),
                         Expanded(
                           child: TextFieldTitle(
                             title: ' number of wick ',
-                            onChange: (v) { setState(() {
+                            costcall: () { setState(() {
 
-                              print('wax wight');
+                             costcal();
+                             updatewickprice();
+                             updatewicknum();
 
                             });
 
@@ -326,40 +387,43 @@ class _CostCalculationState extends State<CostCalculation> {
                         Expanded(
                           child: TextFieldTitle(
                             title: 'wick price',
-                            onChange: (v) { setState(() {
+                            costcall: () { setState(() {
 
-                              print('wax pice');
+                              costcal();
 
                             });
 
                             }, controller: wickPriceController,),
                         ),
-                        TextTitle(title: 'wicl claculation', value: "resultwickcal "),
+                        TextTitle(title: 'wicl claculation', value: resultwick),
 
 
                       ],
                     ),
                   ),
-                  Container(
-                    padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 5),
-                    decoration: BoxDecoration(
-                        color: CustomColor.containerColor,
-                        borderRadius: BorderRadius.circular(20),
-                        border: Border.all(color: CustomColor.secondary)),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        TextTitle(title: 'wax wight', value: "resultwax+unitWax" ),
-                        TextTitle(title: 'fragrace  wight', value:'resultfo+unitf'),
-                      ],
-                    ),
-                  ),
+
 
                 ],
               ),
             ),
+            Container(
+              padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 5),
+              width: 250,
+              decoration: BoxDecoration(
+                  color: Colors.teal[200],
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(color: CustomColor.secondary)),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  TextTitle(title: 'Cost per candle', value: costpercandle ),
+                  TextTitle(title: 'Wax price per_candle ', value:waxpricepercandle),
+                  TextTitle(title: 'Oil price prr_candle', value:oilpricepercandle),
+                ],
+              ),
+            ),
           ],
-        )
+        ),
       ),
     );
   }

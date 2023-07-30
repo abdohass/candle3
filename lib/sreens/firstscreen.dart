@@ -5,6 +5,7 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:untitled/models/languaesmodel.dart';
 import 'package:untitled/sreens/links.dart';
+import 'package:untitled/sreens/myTemplates.dart';
 
 import '../constcolor/color.dart';
 import '../constcolor/textStyle.dart';
@@ -172,11 +173,21 @@ String unitWax = 'g';
     decoration: BoxDecoration(
     color: Colors.blue,
     ),
-    child: Text('menu'),
+    child: Text('menu' ,
+    style: TextStyle(fontSize: 30,
+    color: Colors.black),),
     ),
     ListTile(
-    title: const Text('my templates'),
+      leading: Icon(Icons.book_online_outlined),
+
+      title: const Text('my templates'),
     onTap: () {
+      Navigator.push(context, MaterialPageRoute(
+          builder: (context){
+            return MyTemplets();
+          }
+      ));
+
 
 
     },
@@ -196,12 +207,12 @@ String unitWax = 'g';
     ),
 
 
-              ListTile(
-                title: const Text('Item 2'),
-                onTap: () {
-
-                },
-              ),
+              // ListTile(
+              //   title: const Text('Item 2'),
+              //   onTap: () {
+              //
+              //   },
+              // ),
       Divider(),
       Theme(
           data: Theme.of(context).copyWith(dividerColor: Colors.transparent,splashColor:Color(0xff3a3ad2) ),

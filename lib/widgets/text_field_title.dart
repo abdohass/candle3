@@ -5,21 +5,25 @@ import '../constcolor/textStyle.dart';
 
 //
 
-class TextFieldTitle extends StatelessWidget {
-   TextFieldTitle({required this.title,  required this.onChange ,required this.controller ,Key? key})
+class TextFieldTitle extends StatefulWidget {
+   TextFieldTitle({required this.title,  required this.costcall ,required this.controller ,Key? key})
       : super(key: key);
 
   String title;
-  Function(String) onChange;
+  Function costcall;
   TextEditingController controller ;
 
+  @override
+  State<TextFieldTitle> createState() => _TextFieldTitleState();
+}
 
+class _TextFieldTitleState extends State<TextFieldTitle> {
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Text(
-          title,
+          widget.title,
           style: CustomTextStyle.titleWhiteTextStyle,
         ),
         // const SizedBox(
@@ -31,10 +35,11 @@ class TextFieldTitle extends StatelessWidget {
             child: TextField(
               maxLines: 1,
               onChanged: (_) {
-                onChange ;
+                widget.costcall();
+
 
               },
-              controller: controller,
+              controller: widget.controller,
               style: CustomTextStyle.bodyTextStyle,
               decoration: InputDecoration(
                   fillColor: Colors.white,
