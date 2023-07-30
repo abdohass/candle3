@@ -1,9 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
-import 'package:untitled/database/hive_db.dart';
-import 'package:untitled/models/result_model.dart';
-
-
 
 class MyTemplets extends StatefulWidget {
   const MyTemplets({super.key});
@@ -13,9 +8,6 @@ class MyTemplets extends StatefulWidget {
 }
 
 class _MyTempletsState extends State<MyTemplets> {
-  // Function(ResultModel ) mybox = HiveDB().createResult(ResultModel(wax:1, fragrace: 1));
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,12 +15,3 @@ class _MyTempletsState extends State<MyTemplets> {
     ) ;
   }
 }
-
-  // @override
-  // Widget build(BuildContext context) {
-  //   // TODO: implement build
-  //   throw UnimplementedError();
-  //}
-
-
-//}
