@@ -21,6 +21,7 @@ SharedPreferences? mySharedPreferences;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   HiveDB.init();
+
   mySharedPreferences = await SharedPreferences.getInstance();
   runApp(MyApp());
 }

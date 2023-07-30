@@ -162,9 +162,6 @@ class _CostCalculationState extends State<CostCalculation> {
       resultjar =(jarnum*jarPrice).toString();
       resultwick=(wickPrice*wicknum).toString();
 
-       costpercandle=resultWaxca+resultOilca+resultjar+resultwick;
-       waxpricepercandle=resultWaxca;
-      oilpricepercandle=resultOilca;
 
 
       if (double.parse(resultWaxca) > 1000 ||
@@ -173,10 +170,10 @@ class _CostCalculationState extends State<CostCalculation> {
           double.parse(resultwick) > 1000) {
         // Convert to grams if the result is greater than 1000
         if (double.parse(resultWaxca) > 1000) {
-          resultWaxca = (double.parse(resultWaxca) / 1000).toStringAsFixed(2) +"kg";
+          resultWaxca = (double.parse(resultWaxca) / 1000).toStringAsFixed(2) ;
         }
         if (double.parse(resultOilca) > 1000) {
-          resultOilca = (double.parse(resultOilca) / 1000).toStringAsFixed(2) +"kg";
+          resultOilca = (double.parse(resultOilca) / 1000).toStringAsFixed(2) ;
         }
         if (double.parse(resultjar) > 1000) {
           resultjar = (double.parse(resultjar) / 1000).toStringAsFixed(2) ;
@@ -185,6 +182,28 @@ class _CostCalculationState extends State<CostCalculation> {
           resultwick = (double.parse(resultwick) / 1000).toStringAsFixed(2)  ;
         }
       }
+
+      //
+      // costpercandle=  (double.parse(resultWaxca) +double.parse(resultOilca) +
+      //     double.parse(resultjar) + double.parse(resultwick)).toStringAsFixed(2);
+      // costpercandle=  (double.parse(resultWaxca +resultOilca +
+      //     resultjar +resultwick)).toStringAsFixed(2);
+
+      double doubleResultWaxca = double.parse(resultWaxca.split(' ')[0]);
+      double doubleResultOilca = double.parse(resultOilca.split(' ')[0]);
+      double doubleResultjar = double.parse(resultjar.split(' ')[0]);
+      double doubleResultwick = double.parse(resultwick.split(' ')[0]);
+
+// Calculate costpercandle by adding the doubles
+      double costpercandleDouble = doubleResultWaxca + doubleResultOilca + doubleResultjar + doubleResultwick;
+
+// Convert the result back to a string with two decimal places
+      costpercandle = costpercandleDouble.toStringAsFixed(2);
+
+      // costpercandle=  resultWaxca+resultOilca+resultjar+resultwick;
+      waxpricepercandle=resultWaxca;
+      oilpricepercandle=resultOilca;
+
 
 
 
