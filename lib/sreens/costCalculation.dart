@@ -172,6 +172,7 @@ class _CostCalculationState extends State<CostCalculation> {
           double.parse(resultjar) > 1000 ||
           double.parse(resultwick) > 1000) {
         // Convert to grams if the result is greater than 1000
+        if (double.parse(resultWaxca) > 1000) {
           resultWaxca = (double.parse(resultWaxca) / 1000).toStringAsFixed(2) ;
           resultWaxca = (double.parse(resultWaxca) / 1000).toStringAsFixed(2) ;
         }
