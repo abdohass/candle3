@@ -4,10 +4,10 @@ import '../constcolor/textStyle.dart';
 
 
 class TextFieldTitle extends StatefulWidget {
-  TextFieldTitle({required this.title, required this.onChange,required this.controller ,Key? key})
+  TextFieldTitle({required this.title, required this.costcall,required this.controller ,Key? key})
       : super(key: key);
   String title;
-  Function(String) onChange;
+  Function costcall;
   TextEditingController controller ;
 
   @override
@@ -23,15 +23,17 @@ class _TextFieldTitleState extends State<TextFieldTitle> {
           widget.title,
           style: CustomTextStyle.titleWhiteTextStyle,
         ),
-        const SizedBox(
-          height: 10,
-        ),
-        SizedBox(
-          width:  300,
-          child: TextField(
-            maxLines: 1,
-            onChanged: (_) {
-              widget.onChange ;
+        // const SizedBox(
+        //   height: 10,
+        // ),
+        Expanded(
+          child: SizedBox(
+            width:  100,
+            child: TextField(
+              maxLines: 1,
+              onChanged: (_) {
+                widget.costcall();
+
 
             },
             controller: widget.controller,
@@ -45,8 +47,8 @@ class _TextFieldTitleState extends State<TextFieldTitle> {
                     borderRadius: BorderRadius.circular(10.0)),
                 labelStyle: CustomTextStyle.bodyTextStyle),
           ),
-        )
-      ],
+        ),
+        )],
     );
   }
 }
