@@ -34,7 +34,8 @@ late Box myBox ;
 String resultfo = '0';
 String resultwax = '0' ;
 String unitWax = 'g';
-  String unitfo ='g';
+String unitfo ='g';
+
 
    TextEditingController fragranceOilController = TextEditingController();
   TextEditingController totalWightController = TextEditingController();
@@ -54,9 +55,14 @@ String unitWax = 'g';
       fo = (totalWight - wax!) ;
       resultwax = (wax!  * totalCandles).toString()! ;
       resultfo = (fo! * totalCandles).toString();
-      print(resultwax);
+      if(double.parse(resultwax) >1000) {
+        unitWax = 'kg';}
+        else{
+          unitWax ='g';
+
+      }
       print(resultfo);
-      // print(resultwax);
+      print(resultwax);
       // print(resultfo);
                                          
 
@@ -343,7 +349,7 @@ changeLang(context, Language(id: 1, name: "English", languageCode: "us"));
                   onPressed: () {
                     Navigator.push(context, MaterialPageRoute(
                         builder: (context){
-                      return CostCalculation(resultwax, resultfo, totalCandles);
+                      return CostCalculation(resultwax, resultfo, totalCandles ,unitWax, unitfo);
                     },));
                   },
                   child: Text('costCalculation'),

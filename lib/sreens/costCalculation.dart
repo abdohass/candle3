@@ -486,7 +486,9 @@ class CostCalculation extends StatefulWidget {
   String waxWight ;
   String oilwight;
  int totalCandles ;
-   CostCalculation(this.waxWight, this.oilwight , this.totalCandles );
+ String unitwax ;
+ String unitfo ;
+   CostCalculation(this.waxWight, this.oilwight , this.totalCandles , this.unitwax , this.unitfo );
 
   @override
   State<CostCalculation> createState() => _CostCalculationState();
@@ -510,6 +512,7 @@ class _CostCalculationState extends State<CostCalculation> {
   String resultwick ='0';
   String unitwax ="g";
   String costpercandle='0';
+  String totalcandlescost ='0';
   String waxpricepercandle='0';
   String oilpricepercandle='0';
 
@@ -536,9 +539,19 @@ class _CostCalculationState extends State<CostCalculation> {
     //resultwax= '0';
     //resultfo = '0';
 
+
     waxwightController.addListener(updatwaxwight);
     waxPricelController.addListener(updatewaxPrice);
     waxwightController.text= widget.waxWight;
+    // if(double.parse(widget.waxWight)>1000) {
+    //   waxwightController.text= (double.parse(widget.waxWight)/1000) as String ;
+    // }
+    //
+    //   else {
+    //   waxwightController.text = widget.waxWight;
+    //
+    // }
+
 
     oilWightController.addListener(updateoilwight);
     oilPriceController.addListener(updateoilprice);
@@ -641,9 +654,40 @@ class _CostCalculationState extends State<CostCalculation> {
   void costcal(){
 
     setState(() {
-      resultWaxca = (waxPrice*waxwWeight).toString();
+      // if (double.parse(widget.waxWight) >1000 ) {
+      //   (double.parse(widget.waxWight) /1000);
+      // }
 
-      resultOilca =(oilPrice*oilWight).toString();
+      if(widget.unitwax == "kg") {
+
+        resultWaxca = ((waxPrice*waxwWeight)).toString();
+
+      }
+
+
+      else {
+
+        resultWaxca = ((waxPrice*waxwWeight)/1000).toString();
+
+      }
+     // resultWaxca = ((waxPrice*waxwWeight)/1000).toString();
+
+
+      if(widget.unitfo == "kg") {
+
+        resultOilca= ((jarPrice*oilWight)).toString();
+
+      }
+
+
+      else {
+
+        resultOilca = ((oilPrice*oilWight)/1000).toString();
+
+      }
+
+      resultOilca =((oilPrice*oilWight)/1000).toString();
+
       resultjar =(jarnum*jarPrice).toString();
       resultwick=(wickPrice*wicknum).toString();
       //
@@ -652,7 +696,7 @@ class _CostCalculationState extends State<CostCalculation> {
 
       // if (double.parse(resultWaxca) > 1000 ||
       //     double.parse(resultOilca) > 1000 ||
-      //     double.parse(resultjar) > 1000 ||
+      //
       //     double.parse(resultwick) > 1000) {
       //   // Convert to grams if the result is greater than 1000
       //   if (double.parse(resultWaxca) > 1000) {
@@ -663,14 +707,7 @@ class _CostCalculationState extends State<CostCalculation> {
       //     resultOilca = (double.parse(resultOilca) / 1000).toStringAsFixed(2) ;
       //     resultOilca = (double.parse(resultOilca) / 1000).toStringAsFixed(2) ;
       //   }
-      //   if (double.parse(resultjar) > 1000) {
-      //     resultjar = (double.parse(resultjar) / 1000).toStringAsFixed(2) ;
-      //     resultjar = (double.parse(resultjar) / 1000).toStringAsFixed(2) ;
-      //   }
-      //   if (double.parse(resultwick) > 1000) {
-      //     resultwick = (double.parse(resultwick) / 1000).toStringAsFixed(2)  ;
-      //     resultwick = (double.parse(resultwick) / 1000).toStringAsFixed(2)  ;
-      //   }
+      //
       // }
 
 
@@ -692,9 +729,10 @@ class _CostCalculationState extends State<CostCalculation> {
 
 // Convert the result back to a string with two decimal places
       costpercandle = costpercandleDouble.toStringAsFixed(2);
+      totalcandlescost =(double.parse(costpercandle)/(widget.totalCandles).toDouble()).toString() ;
 
-      waxpricepercandle=resultWaxca;
-      oilpricepercandle=resultOilca;
+      waxpricepercandle=(double.parse(resultWaxca)/(widget.totalCandles)).toString();
+      oilpricepercandle=(double.parse(resultOilca)/(widget.totalCandles)).toString();
 
 
 
@@ -774,8 +812,9 @@ class _CostCalculationState extends State<CostCalculation> {
                               costcall :() {
 
                                setState(() {
-
+                                 widget.unitwax ="g";
                                 costcal();
+
                               });
 
 
@@ -789,8 +828,7 @@ class _CostCalculationState extends State<CostCalculation> {
                                 costcal();
 
                                 });
-                              print(" 5555555555$waxPrice");
-                              print('999999999$waxwWeight');
+
                               print(resultWaxca);
                               }, controller: waxPricelController,),
                           ),
@@ -813,6 +851,7 @@ class _CostCalculationState extends State<CostCalculation> {
                             child: TextFieldTitle(
                               title: 'oil wight',
                               costcall: () { setState(() {
+                                widget.unitfo ='g';
                                 costcal();
                               });
 
@@ -929,9 +968,11 @@ class _CostCalculationState extends State<CostCalculation> {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
-                    TextTitle(title: 'Cost per candle', value: costpercandle ),
+                    TextTitle(title: 'Cost per candle', value: totalcandlescost ),
+                    TextTitle(title: '    total candle cost', value: costpercandle ),
                     TextTitle(title: 'Wax price per_candle ', value:waxpricepercandle),
                     TextTitle(title: 'Oil price prr_candle', value:oilpricepercandle),
+
                   ],
                 ),
               ),
