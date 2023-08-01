@@ -30,7 +30,7 @@ class _MyHomePageState extends State<MyHomePage> {
 late Box myBox ;
   double fragranceOil =0;
   double totalWight = 0;
- double totalCandles  = 1;
+ int totalCandles  = 1;
 String resultfo = '0';
 String resultwax = '0' ;
 String unitWax = 'g';
@@ -58,6 +58,11 @@ String unitWax = 'g';
       print(resultfo);
       // print(resultwax);
       // print(resultfo);
+                                         
+
+
+      resultwax = (double.parse(resultwax) > 1000 ? (double.parse(resultwax) / 1000).toStringAsFixed(2)  : (double.parse(resultwax).toStringAsFixed(2)).toString());
+      resultfo = (double.parse(resultfo) > 1000 ? (double.parse(resultfo)/ 1000).toStringAsFixed(2)+'k' :  (double.parse(resultfo).toStringAsFixed(2)).toString());
     });
     setState(() {
       //resultwax =((totalWight! / (1 + fragranceOil!))) ;//fragrance oil percent
@@ -108,7 +113,7 @@ String unitWax = 'g';
   void  updatetotalcanle() {
     setState(() {
       if (totalCandlesController.text != '') {
-        totalCandles =double.parse(totalCandlesController.text) ;
+        totalCandles =int.parse(totalCandlesController.text) ;
       }
       else {
         totalCandles=  1;
@@ -338,7 +343,7 @@ changeLang(context, Language(id: 1, name: "English", languageCode: "us"));
                   onPressed: () {
                     Navigator.push(context, MaterialPageRoute(
                         builder: (context){
-                      return CostCalculation();
+                      return CostCalculation(resultwax, resultfo, totalCandles);
                     },));
                   },
                   child: Text('costCalculation'),
