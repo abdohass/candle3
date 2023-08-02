@@ -61,6 +61,13 @@ String unitfo ='g';
           unitWax ='g';
 
       }
+
+      if(double.parse(resultfo) >1000) {
+        unitfo = 'kg';}
+      else{
+        unitfo ='g';
+
+      }
       print(resultfo);
       print(resultwax);
       // print(resultfo);
@@ -184,14 +191,14 @@ String unitfo ='g';
     decoration: BoxDecoration(
     color: Colors.blue,
     ),
-    child: Text('menu' ,
-    style: TextStyle(fontSize: 30,
-    color: Colors.black),),
+    child: Text   (" ${getLang(context, "menu")}", style: TextStyle(fontSize: 30,
+        color: Colors.black)),
+
     ),
     ListTile(
       leading: Icon(Icons.book_online_outlined),
 
-      title: const Text('my templates'),
+      title: Text(" ${getLang(context, "my templets")}"),
     onTap: () {
       Navigator.push(context, MaterialPageRoute(
           builder: (context){
