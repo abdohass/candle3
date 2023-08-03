@@ -134,6 +134,29 @@ String unitfo ='g';
       }
     });
   }
+  void saveData() {
+    if (fragranceOilController.text.isEmpty || totalWightController.text.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text("Please fill all the fields."),
+          backgroundColor: Colors.red,
+        ),
+      );
+      return;
+    }
+
+    // Save the data in MyTemplets screen
+    Navigator.push(context, MaterialPageRoute(
+      builder: (context) {
+        return MyTemplets(
+          resultwax: resultwax,
+          resultfo: resultfo,
+        );
+      },
+    ));
+  }
+
+
 
   Widget myTextfeild (title , controller  ){
 
@@ -288,7 +311,7 @@ changeLang(context, Language(id: 1, name: "English", languageCode: "us"));
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 myTextfeild(
-                     'wight candle',
+                  " ${getLang(context, "wight candle")}",
                     totalWightController , ),
                     // onChange: (v) { setState(() {  calculate();
                     //
@@ -305,10 +328,11 @@ changeLang(context, Language(id: 1, name: "English", languageCode: "us"));
   // controller: talWtoightController,),
                 myTextfeild(
 
-                  'frag candle',
+                  " ${getLang(context, "oil candle")}",
                   fragranceOilController , ),
 
-                  myTextfeild("total candle", totalCandlesController),
+                  myTextfeild( " ${getLang(context, "total candles")}"
+                      , totalCandlesController),
 
                   //   title: 'fragranceoil candle',
                   //   onChange: (value) { setState(() {
@@ -353,9 +377,9 @@ changeLang(context, Language(id: 1, name: "English", languageCode: "us"));
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                TextButton(
+                ElevatedButton(
                   style: ButtonStyle(
-                    foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+                    foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
                   ),
                   onPressed: () {
                     Navigator.push(context, MaterialPageRoute(
@@ -364,6 +388,13 @@ changeLang(context, Language(id: 1, name: "English", languageCode: "us"));
                     },));
                   },
                   child: Text('costCalculation'),
+                ),
+                ElevatedButton(
+                  style: ButtonStyle(
+                    foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
+                  ),
+                  onPressed: saveData,
+                  child: Text('Save'),
                 ),
 
                 //TextTitle(title: 'fragrace  wight', value:'$resultfo'),
