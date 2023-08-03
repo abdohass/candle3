@@ -13,6 +13,7 @@ import 'package:untitled/widgets/text_field_title.dart';
 import 'package:untitled/widgets/text_title.dart';
 
 import 'constcolor/color.dart';
+import 'database/templateAdapter.dart';
 //import 'package:shared_preferences/shared_preferences.dart';
 
 
@@ -20,7 +21,10 @@ SharedPreferences? mySharedPreferences;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  HiveDB.init();
+  await Hive.initFlutter();
+  Hive.registerAdapter(TemplateAdapter()); // Register the adapter for your Template model
+  await Hive.openBox('myBox'); // Open the Hive box
+  //HiveDB.init();
 
   mySharedPreferences = await SharedPreferences.getInstance();
   runApp(MyApp());

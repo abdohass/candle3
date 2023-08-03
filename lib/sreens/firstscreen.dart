@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:untitled/database/template.dart';
 import 'package:untitled/models/languaesmodel.dart';
 import 'package:untitled/sreens/links.dart';
 import 'package:untitled/sreens/myTemplates.dart';
@@ -27,7 +28,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 //int? value = 0;
-late Box myBox ;
+// /Box myBox ;
   double fragranceOil =0;
   double totalWight = 0;
  int totalCandles  = 1;
@@ -202,7 +203,10 @@ String unitfo ='g';
     onTap: () {
       Navigator.push(context, MaterialPageRoute(
           builder: (context){
-            return MyTemplets();
+            return  MyTemplets(
+              resultwax: resultwax,
+              resultfo: resultfo,
+            );
           }
       ));
 
@@ -216,7 +220,7 @@ String unitfo ='g';
     onTap: () {
       Navigator.push(context, MaterialPageRoute(
               builder: (context){
-              return Links();
+              return Links( );
       }
       ));
 
