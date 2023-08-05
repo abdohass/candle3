@@ -20,9 +20,10 @@ class MyTemplets extends StatefulWidget {
 }
 
 class _MyTempletsState extends State<MyTemplets> {
-  String currentResultwax = '';
+ String currentResultwax = '';
   String currentResultfo = '';
   List<Template> templates = [];
+  //List<Template> savedTemplates = [];
 
   List<Template> getTemplates() {
     final box = Hive.box('myBox');
@@ -31,6 +32,7 @@ class _MyTempletsState extends State<MyTemplets> {
         .where((json) => json is Map<String, dynamic>)
         .map<Template>((json) => Template.fromJson(json))
         .toList();
+
   }
   @override
   void initState() {
@@ -41,43 +43,42 @@ class _MyTempletsState extends State<MyTemplets> {
   }
 
 
-  void saveTemplate(double resultwax, double resultfo) {
-    final box = Hive.box('myBox');
-    final template = Template(resultwax: resultwax, resultfo: resultfo);
-    templates.add(template);
-    box.put('templates', templates.map((t) => t.toJson()).toList());
-
-
-
-    setState(() {
-      currentResultwax =  resultwax.toString();
-      currentResultfo = resultfo.toString();
-    });
-
-
-  }
+  //  void saveTemplate(double resultwax, double resultfo) {
+  //   final box = Hive.box('myBox');
+  //   final template = Template(resultwax: resultwax, resultfo: resultfo);
+  //   templates.add(template);
+  //   box.put('templates', templates.map((t) => t.toJson()).toList());
+  //
+  //
+  //
+  //   setState(() {
+  //     currentResultwax =  resultwax.toString();
+  //     currentResultfo = resultfo.toString();
+  //   });
+  //   savedTemplates.add(template);
+  //
+  //
+  // }
 
 
 
 
   @override
   Widget build(BuildContext context) {
+   // savedTemplates = getTemplates();
+
+
     return Scaffold(
-      appBar: AppBar(),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text('Result Wax: $currentResultwax'),
-            Text('Result FO: $currentResultfo'),
-            ElevatedButton(
-              onPressed: () {
-                saveTemplate(double.parse(widget.resultwax) ,double.parse(widget.resultfo) );
-              },
-              child: Text('Save Template'),
-            ),
-          ],
-        ),
+      appBar: AppBar(title: Text("My Templates")),
+      body: ListView.builder(
+        itemCount: templates.length,
+        itemBuilder: (context, index) {
+          final template = templates[index];
+          return ListTile(
+            title: Text('Result Wax: ${template.resultwax}'),
+            subtitle: Text('Result FO: ${template.resultfo}'),
+          );
+        },
       ),
     );
   }

@@ -27,6 +27,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
+
+
 //int? value = 0;
 // /Box myBox ;
   double fragranceOil =0;
@@ -36,9 +39,10 @@ String resultfo = '0';
 String resultwax = '0' ;
 String unitWax = 'g';
 String unitfo ='g';
+  List<Template> templates = [];
 
 
-   TextEditingController fragranceOilController = TextEditingController();
+  TextEditingController fragranceOilController = TextEditingController();
   TextEditingController totalWightController = TextEditingController();
   TextEditingController totalCandlesController = TextEditingController();
 
@@ -134,7 +138,7 @@ String unitfo ='g';
       }
     });
   }
-  void saveData() {
+  void saveData(double resultWax, double resultFo) {
     if (fragranceOilController.text.isEmpty || totalWightController.text.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -145,16 +149,21 @@ String unitfo ='g';
       return;
     }
 
-    // Save the data in MyTemplets screen
-    Navigator.push(context, MaterialPageRoute(
-      builder: (context) {
-        return MyTemplets(
-          resultwax: resultwax,
-          resultfo: resultfo,
-        );
-      },
-    ));
+    // Save the data directly in the templates list
+    final template = Template(resultwax: resultWax, resultfo: resultFo);
+    templates.add(template);
+
+    // Save the templates list to Hive
+    final box = Hive.box('myBox');
+    box.put('templates', templates.map((t) => t.toJson()).toList());
+
+    setState(() {
+      var currentResultwax = resultWax.toString();
+      var currentResultfo = resultFo.toString();
+    });
   }
+
+
 
 
 
@@ -393,7 +402,9 @@ changeLang(context, Language(id: 1, name: "English", languageCode: "us"));
                   style: ButtonStyle(
                     foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
                   ),
-                  onPressed: saveData,
+                  onPressed:() {
+                    saveData(double.parse(resultwax), double.parse(resultfo));
+                  },
                   child: Text('Save'),
                 ),
 
