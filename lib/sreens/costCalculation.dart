@@ -480,6 +480,7 @@ import 'package:untitled/constcolor/color.dart';
 import '../sreens/firstscreen.dart';
 import '../widgets/text_field_title.dart';
 import '../widgets/text_title.dart';
+import 'localization.dart';
 
 
 class CostCalculation extends StatefulWidget {
@@ -765,7 +766,7 @@ class _CostCalculationState extends State<CostCalculation> {
     return Scaffold(
       backgroundColor: CustomColor.secondary,
       appBar: AppBar(
-        title: const Text('cost calculator'),
+        title: Text (" ${getLang(context, "cost calculator")}"),
       ),
       body:
 
@@ -802,7 +803,7 @@ class _CostCalculationState extends State<CostCalculation> {
                       // color: Colors.teal[100],
                       child:  Column(
                         children: [
-                          const Text("wax calc"),
+                          Text(" ${getLang(context, "wax calc")}"),
                           Expanded(
                             child: TextFieldTitle(
                               title: 'wax wight',
@@ -846,7 +847,7 @@ class _CostCalculationState extends State<CostCalculation> {
 
                       child:  Column(
                         children: [
-                          const Text("oil calc"),
+                          Text(" ${getLang(context, "oil calc")}"),
                           Expanded(
                             child: TextFieldTitle(
                               title: 'oil wight',
@@ -883,7 +884,7 @@ class _CostCalculationState extends State<CostCalculation> {
 
                       child:  Column(
                         children: [
-                          const Text("jar calc"),
+                          Text(" ${getLang(context, "jar calc")}"),
                           Expanded(
                             child: TextFieldTitle(
                               title: 'number of jar',
@@ -922,7 +923,7 @@ class _CostCalculationState extends State<CostCalculation> {
 
                       child:  Column(
                         children: [
-                          const Text("wick calc"),
+                          Text(" ${getLang(context, " wick calc")}"),
                           Expanded(
                             child: TextFieldTitle(
                               title: ' number of wick ',
@@ -968,10 +969,10 @@ class _CostCalculationState extends State<CostCalculation> {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
-                    TextTitle(title: 'Cost per candle', value: totalcandlescost ),
-                    TextTitle(title: '    total candle cost', value: costpercandle ),
-                    TextTitle(title: 'Wax price per_candle ', value:waxpricepercandle),
-                    TextTitle(title: 'Oil price prr_candle', value:oilpricepercandle),
+                    TextTitle(title:" ${getLang(context, "cost per candle")}", value: totalcandlescost ),
+                    TextTitle(title: " ${getLang(context, "total candle cost")}", value: costpercandle ),
+                    TextTitle(title: " ${getLang(context, "Wax price per_candle")}", value:waxpricepercandle),
+                    TextTitle(title:  " ${getLang(context, "Oil price prr_candle")}", value:oilpricepercandle),
 
                   ],
                 ),

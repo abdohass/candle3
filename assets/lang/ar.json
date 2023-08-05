@@ -15,5 +15,15 @@
   "my templets" : " النماذج السابقة",
   "wight candle" : "الوزن المطلوب",
   "oil candle" : "ادخل الزيت ",
-  "total candles" : "عدد الشموع"
+  "total candles" : "عدد الشموع" ,
+  "cost calculator" : "تكلفة الشموع",
+  "wax calc" : "تكلفة الشمع" ,
+  "oil calc" : "تكلفة الزيت" ,
+  "jar calc" : "تكلفة الاناء ",
+  " wick calc" : "تكلفة الفتيل " ,
+  "cost per candle" : "تكلفة الشمعة الواحدة",
+  "total candle cost" : "التكلفة الكلية للشمع ",
+  "Wax price per_candle": " تكلفة الشمع فقط ",
+  "Oil price prr_candle" : "تكلفة الزيت"
+
 }
