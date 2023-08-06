@@ -29,17 +29,16 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
 
 
-
+  List<Template> templates = [];
 //int? value = 0;
 // /Box myBox ;
   double fragranceOil =0;
   double totalWight = 0;
- int totalCandles  = 1;
+ int   totalCandles  = 1;
 String resultfo = '0';
 String resultwax = '0' ;
 String unitWax = 'g';
 String unitfo ='g';
-  List<Template> templates = [];
 
 
   TextEditingController fragranceOilController = TextEditingController();
@@ -93,6 +92,36 @@ String unitfo ='g';
     });
 
   }
+  void saveData(double resultWax, double resultFo,
+      TextEditingController fragranceOilController,
+      TextEditingController totalWightController,
+      TextEditingController totalCandlesController) {
+    if (fragranceOilController.text.isEmpty ||
+        totalWightController.text.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text("Please fill all the fields."),
+          backgroundColor: Colors.red,
+        ),
+      );
+      return;
+    }
+
+    // Save the data directly in the templates list
+    final template = Template(resultwax: resultWax, resultfo: resultFo);
+    templates.add(template);
+         // templates = List.generate( templates.length, (_)=> templates[_], growable: false);
+
+    // Save the templates list to Hive
+    final box = Hive.box('myBox');
+    box.put('templates', templates
+        .map((t) => t.toJson()).toList());
+    box.add(template);
+    setState(() {
+      var currentResultwax = resultWax.toString();
+      var currentResultfo = resultFo.toString();
+    });
+  }
 
 
   @override
@@ -138,30 +167,7 @@ String unitfo ='g';
       }
     });
   }
-  void saveData(double resultWax, double resultFo) {
-    if (fragranceOilController.text.isEmpty || totalWightController.text.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text("Please fill all the fields."),
-          backgroundColor: Colors.red,
-        ),
-      );
-      return;
-    }
 
-    // Save the data directly in the templates list
-    final template = Template(resultwax: resultWax, resultfo: resultFo);
-    templates.add(template);
-
-    // Save the templates list to Hive
-    final box = Hive.box('myBox');
-    box.put('templates', templates.map((t) => t.toJson()).toList());
-
-    setState(() {
-      var currentResultwax = resultWax.toString();
-      var currentResultfo = resultFo.toString();
-    });
-  }
 
 
 
@@ -236,8 +242,8 @@ String unitfo ='g';
       Navigator.push(context, MaterialPageRoute(
           builder: (context){
             return  MyTemplets(
-              resultwax: resultwax,
-              resultfo: resultfo,
+              // resultwax: resultwax,
+              // resultfo: resultfo,
             );
           }
       ));
@@ -372,8 +378,8 @@ changeLang(context, Language(id: 1, name: "English", languageCode: "us"));
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                TextTitle(title: 'wax wight', value: resultwax+unitWax ),
-                TextTitle(title: 'fragrace  wight', value:resultfo+unitfo),
+                TextTitle(title: " ${getLang(context, "wax weight")}", value: resultwax+unitWax ),
+                TextTitle(title: " ${getLang(context, "fragrance weight")}", value:resultfo+unitfo),
               ],
             ),
           ),
@@ -403,7 +409,7 @@ changeLang(context, Language(id: 1, name: "English", languageCode: "us"));
                     foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
                   ),
                   onPressed:() {
-                    saveData(double.parse(resultwax), double.parse(resultfo));
+                    saveData(double.parse(resultwax), double.parse(resultfo) ,fragranceOilController , totalWightController , totalCandlesController);
                   },
                   child: Text('Save'),
                 ),

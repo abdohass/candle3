@@ -24,6 +24,8 @@
   "cost per candle" : "تكلفة الشمعة الواحدة",
   "total candle cost" : "التكلفة الكلية للشمع ",
   "Wax price per_candle": " تكلفة الشمع فقط ",
-  "Oil price prr_candle" : "تكلفة الزيت"
+  "Oil price prr_candle" : "تكلفة الزيت",
+  "wax weight": "وزن الشمع " ,
+  "fragrance weight" : " نسبة الزيت العطري"
 
 }

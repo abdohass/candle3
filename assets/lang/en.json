@@ -22,7 +22,9 @@
   "cost per candle" :"cost per candle",
   "total candle cost" : "total candle cost" ,
   "Wax price per_candle" : "Wax price per_candle" ,
-  "Oil price prr_candle" : "Oil price prr_candle"
+  "Oil price prr_candle" : "Oil price prr_candle" ,
+  "wax weight" : "wax weight" ,
+  "fragrance weight"  :"fragrance weight"
 
 
 }

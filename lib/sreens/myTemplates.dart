@@ -7,11 +7,11 @@ import '../database/template.dart';
 import '../database/templateAdapter.dart';
 
 class MyTemplets extends StatefulWidget {
-  final String resultwax;
-  final String resultfo;
+  // final String resultwax;
+  // final String resultfo;
 
-  MyTemplets({required this.resultwax, required this.resultfo, Key? key})
-      : super(key: key);
+  // MyTemplets({required this.resultwax, required this.resultfo, Key? key})
+  //     : super(key: key);
 
 
 
@@ -20,26 +20,33 @@ class MyTemplets extends StatefulWidget {
 }
 
 class _MyTempletsState extends State<MyTemplets> {
- String currentResultwax = '';
-  String currentResultfo = '';
+ // String currentResultwax = '';
+ //  String currentResultfo = '';
   List<Template> templates = [];
   //List<Template> savedTemplates = [];
 
-  List<Template> getTemplates() {
-    final box = Hive.box('myBox');
-    final templatesJson = box.get('templates', defaultValue: []);
-    return templatesJson
-        .where((json) => json is Map<String, dynamic>)
-        .map<Template>((json) => Template.fromJson(json))
-        .toList();
+
+   getTemplates() async {
+     var box = await Hive.openBox('myBox');
+    // final box = Hive.box('myBox');
+    final templatesJson = await box.get('templates',);
+ setState(() {
+   templates= templatesJson
+       .where((json) => json is Map<String, dynamic>)
+       .map<Template>((json) => Template.fromJson(json))
+       .toList();
+   print(templates);
+ });
 
   }
   @override
   void initState() {
     super.initState();
-    currentResultwax = widget.resultwax;
-    currentResultfo = widget.resultfo;
-    templates = getTemplates();
+    // currentResultwax = widget.resultwax;
+    // currentResultfo = widget.resultfo;
+    getTemplates();
+    print(templates);
+
   }
 
 

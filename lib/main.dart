@@ -104,4 +104,3 @@ class _MyAppState extends State<MyApp> {
   }
 }
 
-class ChangeLang with ChangeNotifier {}
