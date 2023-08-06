@@ -26,17 +26,16 @@ class _MyTempletsState extends State<MyTemplets> {
   //List<Template> savedTemplates = [];
 
 
-   getTemplates() async {
-     var box = await Hive.openBox('myBox');
-    // final box = Hive.box('myBox');
-    final templatesJson = await box.get('templates',);
- setState(() {
-   templates= templatesJson
+  List<Template>getTemplates()  {
+
+   final box = Hive.box('myBox');
+
+   final templatesJson = box.get('templates', defaultValue: []);
+   return templatesJson
        .where((json) => json is Map<String, dynamic>)
        .map<Template>((json) => Template.fromJson(json))
        .toList();
-   print(templates);
- });
+
 
   }
   @override
@@ -44,28 +43,10 @@ class _MyTempletsState extends State<MyTemplets> {
     super.initState();
     // currentResultwax = widget.resultwax;
     // currentResultfo = widget.resultfo;
-    getTemplates();
+    templates = getTemplates();
     print(templates);
 
   }
-
-
-  //  void saveTemplate(double resultwax, double resultfo) {
-  //   final box = Hive.box('myBox');
-  //   final template = Template(resultwax: resultwax, resultfo: resultfo);
-  //   templates.add(template);
-  //   box.put('templates', templates.map((t) => t.toJson()).toList());
-  //
-  //
-  //
-  //   setState(() {
-  //     currentResultwax =  resultwax.toString();
-  //     currentResultfo = resultfo.toString();
-  //   });
-  //   savedTemplates.add(template);
-  //
-  //
-  // }
 
 
 

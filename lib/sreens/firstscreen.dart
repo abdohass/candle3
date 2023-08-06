@@ -75,7 +75,7 @@ String unitfo ='g';
       print(resultfo);
       print(resultwax);
       // print(resultfo);
-                                         
+
 
 
       resultwax = (double.parse(resultwax) > 1000 ? (double.parse(resultwax) / 1000).toStringAsFixed(2)  : (double.parse(resultwax).toStringAsFixed(2)).toString());
@@ -356,7 +356,7 @@ changeLang(context, Language(id: 1, name: "English", languageCode: "us"));
                   //
                   //   }, controller: fragranceOilController,),
                   //
-                
+
                 // TextFieldTitle(
                 //     title: 'total candle',
                 //     onChange: (v) { setState(() {
@@ -402,7 +402,7 @@ changeLang(context, Language(id: 1, name: "English", languageCode: "us"));
                       return CostCalculation(resultwax, resultfo, totalCandles ,unitWax, unitfo);
                     },));
                   },
-                  child: Text('costCalculation'),
+                  child: Text(" ${getLang(context, "costCalculation")}"),
                 ),
                 ElevatedButton(
                   style: ButtonStyle(
