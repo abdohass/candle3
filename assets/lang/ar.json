@@ -27,6 +27,7 @@
   "Oil price prr_candle" : "تكلفة الزيت",
   "wax weight": "وزن الشمع " ,
   "fragrance weight" : " نسبة الزيت العطري",
-  "costCalculation" : "احسب التكلفة "
+  "costCalculation" : "احسب التكلفة " ,
+  "save" : "حفظ"
 
 }

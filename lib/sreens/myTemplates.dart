@@ -7,6 +7,7 @@ import '../database/template.dart';
 import '../database/templateAdapter.dart';
 
 class MyTemplets extends StatefulWidget {
+  
   // final String resultwax;
   // final String resultfo;
 

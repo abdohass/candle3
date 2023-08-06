@@ -411,7 +411,7 @@ changeLang(context, Language(id: 1, name: "English", languageCode: "us"));
                   onPressed:() {
                     saveData(double.parse(resultwax), double.parse(resultfo) ,fragranceOilController , totalWightController , totalCandlesController);
                   },
-                  child: Text('Save'),
+                  child: Text(" ${getLang(context, "save")}"),
                 ),
 
                 //TextTitle(title: 'fragrace  wight', value:'$resultfo'),
