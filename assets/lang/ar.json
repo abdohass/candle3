@@ -28,6 +28,20 @@
   "wax weight": "وزن الشمع " ,
   "fragrance weight" : " نسبة الزيت العطري",
   "costCalculation" : "احسب التكلفة " ,
-  "save" : "حفظ"
-
+  "save" : "حفظ",
+  " number of wick" : "عدد الفتيل",
+  "wick price"  :"سٍعر الفتيل",
+  "wicl claculation" : "حسبة الفتبل" ,
+  "jar claculation" : "حسبة الاناء",
+  "jar price" : "حسبة الاناء",
+  "number of jar" : "عدد الاناء",
+  "oil price" : "سعر الزيت العطري",
+  "oil wight" : "وزن الزيت العطري",
+  "wax claculation" : "حسبة الشمع" ,
+  "wax price" : "سعر الشمع" ,
+  "wax wight" : "وزن الشمع" ,
+  "Links" : "تواصل معنا" ,
+  "Open Facebook Page" : " صفحتنا علي الفيسبوك",
+  "Open YouTube Channel" : "صفحتنا علي اليوتيوب" ,
+  "oil claculation" : " حسبة الزيت"
 }

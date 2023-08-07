@@ -26,7 +26,23 @@
   "wax weight" : "wax weight" ,
   "fragrance weight"  :"fragrance weight" ,
   "costCalculation" : "costCalculation" ,
-  "save":"save"
+  "save":"save" ,
+  " number of wick" : " number of wick" ,
+  "wick price" : "wick price" ,
+  "wicl claculation" : "wicl claculation" ,
+  "jar claculation" : "jar claculation" ,
+  "jar price" : "jar price",
+  "number of jar" : "number of jar" ,
+  "oil price" : "oil price" ,
+  "oil wight" : "oil wight" ,
+  "wax claculation" : "wax claculation" ,
+        "wax price": "wax price" ,
+  "wax wight" : "wax wight" ,
+  "Links" :"Links" ,
+  "Open Facebook Page" :"Open Facebook Page" ,
+  "Open YouTube Channel" : "Open YouTube Channel" ,
+  "oil claculation" : "oil claculation"
+
 
 
 }

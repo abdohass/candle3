@@ -4,10 +4,10 @@ import '../constcolor/textStyle.dart';
 
 
 class TextFieldTitle extends StatefulWidget {
-  TextFieldTitle({required this.title, required this.costcall,required this.controller ,Key? key})
+  TextFieldTitle({required this.title, required this.onchang,required this.controller ,Key? key})
       : super(key: key);
   String title;
-  Function costcall;
+  Function onchang;
   TextEditingController controller ;
 
   @override
@@ -32,7 +32,7 @@ class _TextFieldTitleState extends State<TextFieldTitle> {
             child: TextField(
               maxLines: 1,
               onChanged: (_) {
-                widget.costcall();
+                widget.onchang();
 
 
             },

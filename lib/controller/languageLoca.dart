@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/main.dart';
 import 'package:untitled/models/languaesmodel.dart';
-import 'costCalculation.dart';
+import '../sreens/costCalculation.dart';
 import 'localization.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

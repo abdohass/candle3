@@ -480,7 +480,7 @@ import 'package:untitled/constcolor/color.dart';
 import '../sreens/firstscreen.dart';
 import '../widgets/text_field_title.dart';
 import '../widgets/text_title.dart';
-import 'localization.dart';
+import '../controller/localization.dart';
 
 
 class CostCalculation extends StatefulWidget {
@@ -544,14 +544,7 @@ class _CostCalculationState extends State<CostCalculation> {
     waxwightController.addListener(updatwaxwight);
     waxPricelController.addListener(updatewaxPrice);
     waxwightController.text= widget.waxWight;
-    // if(double.parse(widget.waxWight)>1000) {
-    //   waxwightController.text= (double.parse(widget.waxWight)/1000) as String ;
-    // }
-    //
-    //   else {
-    //   waxwightController.text = widget.waxWight;
-    //
-    // }
+
 
 
     oilWightController.addListener(updateoilwight);
@@ -655,67 +648,40 @@ class _CostCalculationState extends State<CostCalculation> {
   void costcal(){
 
     setState(() {
-      // if (double.parse(widget.waxWight) >1000 ) {
-      //   (double.parse(widget.waxWight) /1000);
-      // }
+
 
       if(widget.unitwax == "kg") {
 
-        resultWaxca = ((waxPrice*waxwWeight)).toString();
+        resultWaxca = ((waxPrice*waxwWeight)).toStringAsFixed(2);
 
       }
 
 
       else {
 
-        resultWaxca = ((waxPrice*waxwWeight)/1000).toString();
+        resultWaxca = ((waxPrice*waxwWeight)/1000).toStringAsFixed(2);
 
       }
-     // resultWaxca = ((waxPrice*waxwWeight)/1000).toString();
+
 
 
       if(widget.unitfo == "kg") {
 
-        resultOilca= ((jarPrice*oilWight)).toString();
+        resultOilca= ((jarPrice*oilWight)).toStringAsFixed(2);
 
       }
 
 
       else {
 
-        resultOilca = ((oilPrice*oilWight)/1000).toString();
+        resultOilca = ((oilPrice*oilWight)/1000).toStringAsFixed(2);
 
       }
 
-      resultOilca =((oilPrice*oilWight)/1000).toString();
+      resultOilca =((oilPrice*oilWight)/1000).toStringAsFixed(2);
 
-      resultjar =(jarnum*jarPrice).toString();
-      resultwick=(wickPrice*wicknum).toString();
-      //
-      //  costpercandle=resultWaxca+resultOilca+resultjar+resultwick;
-
-
-      // if (double.parse(resultWaxca) > 1000 ||
-      //     double.parse(resultOilca) > 1000 ||
-      //
-      //     double.parse(resultwick) > 1000) {
-      //   // Convert to grams if the result is greater than 1000
-      //   if (double.parse(resultWaxca) > 1000) {
-      //     resultWaxca = (double.parse(resultWaxca) / 1000).toStringAsFixed(2) ;
-      //     resultWaxca = (double.parse(resultWaxca) / 1000).toStringAsFixed(2) ;
-      //   }
-      //   if (double.parse(resultOilca) > 1000) {
-      //     resultOilca = (double.parse(resultOilca) / 1000).toStringAsFixed(2) ;
-      //     resultOilca = (double.parse(resultOilca) / 1000).toStringAsFixed(2) ;
-      //   }
-      //
-      // }
-
-
-
-
-
-
+      resultjar =(jarnum*jarPrice).toStringAsFixed(2);
+      resultwick=(wickPrice*wicknum).toStringAsFixed(2);
 
 
 
@@ -730,35 +696,15 @@ class _CostCalculationState extends State<CostCalculation> {
 
 // Convert the result back to a string with two decimal places
       costpercandle = costpercandleDouble.toStringAsFixed(2);
-      totalcandlescost =(double.parse(costpercandle)/(widget.totalCandles).toDouble()).toString() ;
+      totalcandlescost =(double.parse(costpercandle)/(widget.totalCandles).toDouble()).toStringAsFixed(2) ;
 
-      waxpricepercandle=(double.parse(resultWaxca)/(widget.totalCandles)).toString();
-      oilpricepercandle=(double.parse(resultOilca)/(widget.totalCandles)).toString();
-
-
-
-
+      waxpricepercandle=(double.parse(resultWaxca)/(widget.totalCandles)).toStringAsFixed(2);
+      oilpricepercandle=(double.parse(resultOilca)/(widget.totalCandles)).toStringAsFixed(2);
 
 
     });
 
-    // setState(() {
-    //   resultjar = (jarPrice*jarnum).toString();
-    //
-    // });
-
-
-
-
-
-
-
   }
-
-
-
-
-
 
 
   @override
@@ -806,11 +752,12 @@ class _CostCalculationState extends State<CostCalculation> {
                           Text(" ${getLang(context, "wax calc")}"),
                           Expanded(
                             child: TextFieldTitle(
-                              title: 'wax wight',
+                              title: " ${getLang(context, 'wax wight')}"
+                           ,
 
 
                               controller: waxwightController,
-                              costcall :() {
+                              onchang :() {
 
                                setState(() {
                                  widget.unitwax ="g";
@@ -823,8 +770,9 @@ class _CostCalculationState extends State<CostCalculation> {
                           ),
                           Expanded(
                             child: TextFieldTitle(
-                              title: 'wax price',
-                              costcall: () { setState(() {
+                              title: " ${getLang(context, 'wax price')}"
+                              ,
+                             onchang: () { setState(() {
 
                                 costcal();
 
@@ -833,7 +781,8 @@ class _CostCalculationState extends State<CostCalculation> {
                               print(resultWaxca);
                               }, controller: waxPricelController,),
                           ),
-                          TextTitle(title: 'wax claculation', value: resultWaxca),
+                          TextTitle(title: " ${getLang(context, 'wax claculation')}"
+                          , value: resultWaxca),
                         ],
                       ),
 
@@ -850,8 +799,9 @@ class _CostCalculationState extends State<CostCalculation> {
                           Text(" ${getLang(context, "oil calc")}"),
                           Expanded(
                             child: TextFieldTitle(
-                              title: 'oil wight',
-                              costcall: () { setState(() {
+                              title: " ${getLang(context, 'oil wight')}"
+                              ,
+                              onchang: () { setState(() {
                                 widget.unitfo ='g';
                                 costcal();
                               });
@@ -860,8 +810,9 @@ class _CostCalculationState extends State<CostCalculation> {
                           ),
                           Expanded(
                             child: TextFieldTitle(
-                              title: 'oil price',
-                              costcall: () { setState(() {
+                              title: " ${getLang(context, 'oil price')}"
+                              ,
+                              onchang: () { setState(() {
 
                                 costcal();
 
@@ -869,7 +820,8 @@ class _CostCalculationState extends State<CostCalculation> {
 
                               }, controller: oilPriceController,),
                           ),
-                          TextTitle(title: 'oil claculation', value: resultOilca),
+                          TextTitle(title: " ${getLang(context, 'oil claculation')}"
+                          , value: resultOilca),
 
 
                         ],
@@ -887,8 +839,9 @@ class _CostCalculationState extends State<CostCalculation> {
                           Text(" ${getLang(context, "jar calc")}"),
                           Expanded(
                             child: TextFieldTitle(
-                              title: 'number of jar',
-                              costcall: () { setState(() {
+                              title: " ${getLang(context, 'number of jar')}"
+                              ,
+                              onchang: () { setState(() {
 
                                 costcal();
 
@@ -898,8 +851,8 @@ class _CostCalculationState extends State<CostCalculation> {
                           ),
                           Expanded(
                             child: TextFieldTitle(
-                              title: 'jar price',
-                              costcall: () { setState(() {
+                              title: " ${getLang(context, 'jar price')}",
+                              onchang: () { setState(() {
 
                                 costcal();
 
@@ -907,7 +860,8 @@ class _CostCalculationState extends State<CostCalculation> {
 
                               }, controller: jarPriceController,),
                           ),
-                          TextTitle(title: 'jar claculation', value:  resultjar),
+                          TextTitle(title: " ${getLang(context, "jar claculation")}"
+                          , value:  resultjar),
 
 
                         ],
@@ -926,8 +880,8 @@ class _CostCalculationState extends State<CostCalculation> {
                           Text(" ${getLang(context, " wick calc")}"),
                           Expanded(
                             child: TextFieldTitle(
-                              title: ' number of wick ',
-                              costcall: () { setState(() {
+                              title: " ${getLang(context, " number of wick")}",
+                              onchang: () { setState(() {
 
                                 costcal();
                                 updatewickprice();
@@ -939,8 +893,8 @@ class _CostCalculationState extends State<CostCalculation> {
                           ),
                           Expanded(
                             child: TextFieldTitle(
-                              title: 'wick price',
-                              costcall: () { setState(() {
+                              title: " ${getLang(context, "wick price")}",
+                              onchang: () { setState(() {
 
                                 costcal();
 
@@ -948,7 +902,8 @@ class _CostCalculationState extends State<CostCalculation> {
 
                               }, controller: wickPriceController,),
                           ),
-                          TextTitle(title: 'wicl claculation', value: resultwick),
+                          TextTitle(title:" ${getLang(context, "wicl claculation")}"
+                          , value: resultwick),
 
 
                         ],
