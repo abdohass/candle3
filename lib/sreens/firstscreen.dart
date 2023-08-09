@@ -8,7 +8,6 @@ import 'package:untitled/sreens/links.dart';
 import 'package:untitled/sreens/myTemplates.dart';
 
 import '../constcolor/color.dart';
-import '../constcolor/textStyle.dart';
 import '../sql/database_helper.dart';
 import '../widgets/myTextfeild.dart';
 import '../widgets/text_field_title.dart';
@@ -86,36 +85,7 @@ String unitfo ='g';
     });
 
   }
-  // void saveData(double resultWax, double resultFo,
-  //     TextEditingController fragranceOilController,
-  //     TextEditingController totalWightController,
-  //     TextEditingController totalCandlesController) {
-  //   if (fragranceOilController.text.isEmpty ||
-  //       totalWightController.text.isEmpty) {
-  //     ScaffoldMessenger.of(context).showSnackBar(
-  //       SnackBar(
-  //         content: Text("Please fill all the fields."),
-  //         backgroundColor: Colors.red,
-  //       ),
-  //     );
-  //     return;
-  //   }
-  //
-  //   // Save the data directly in the templates list
-  //   final template = Template(resultwax: resultWax, resultfo: resultFo);
-  //   templates.add(template);
-  //        // templates = List.generate( templates.length, (_)=> templates[_], growable: false);
-  //
-  //   // Save the templates list to Hive
-  //   final box = Hive.box('myBox');
-  //   box.put('templates', templates
-  //       .map((t) => t.toJson()).toList());
-  //   box.add(template);
-  //   setState(() {
-  //     var currentResultwax = resultWax.toString();
-  //     var currentResultfo = resultFo.toString();
-  //   });
-  // }
+
   void saveData(double resultWax, double resultFo, int totalCandles) async {
     if (fragranceOilController.text.isEmpty || totalWightController.text.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -192,7 +162,9 @@ String unitfo ='g';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: CustomColor.secondary,
+      // backgroundColor: CustomColor.secondary,
+      backgroundColor: Color(0xff90B5EA),
+
       appBar: AppBar(
         title:  Text(" ${getLang(context, "candle calculator")}"),
       ),
@@ -200,20 +172,28 @@ String unitfo ='g';
 
 
       body:
+
       ListView(
-        padding: const EdgeInsets.symmetric(vertical: 10),
+        padding: EdgeInsets.only( top: MediaQuery.of(context).size.height*.03,
+        right: MediaQuery.of(context).size.height*.06,
+        left:MediaQuery.of(context).size.height*.06 ),
         children: [
           Container(
-            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+
+            // width: MediaQuery.of(context).size.width,
+            padding: EdgeInsets.only(top: MediaQuery.of(context).size.height*.03),
             decoration: BoxDecoration(
-                color: CustomColor.containerColor,
+                // color: CustomColor.containerColor,
+                color: Colors.white.withOpacity(.3),
+
                 borderRadius: BorderRadius.circular(20),
                 border: Border.all(color: CustomColor.secondary)),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 myTextfeild(
-                   title :" ${getLang(context, "wight candle")}",
+                   title :" ${getLang(context, "wight candle")}"
+                  ,
                    changing:() {
                      calculate();
                    },
@@ -237,10 +217,17 @@ String unitfo ='g';
               ],
             ),
           ),
+          SizedBox(height: MediaQuery.of(context).size.height/15,),
           Container(
-            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+            // width: MediaQuery.of(context).size.width,
+            padding: EdgeInsets.only(top: MediaQuery.of(context).size.height*.01
+            , bottom: MediaQuery.of(context).size.height*.01),
+
+            // padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
             decoration: BoxDecoration(
-                color: CustomColor.containerColor,
+                color: Colors.white.withOpacity(.3),
+
+                // color: CustomColor.containerColor,
                 borderRadius: BorderRadius.circular(20),
                 border: Border.all(color: CustomColor.secondary)),
             child: Column(
@@ -251,17 +238,27 @@ String unitfo ='g';
               ],
             ),
           ),
+
+          SizedBox(height: MediaQuery.of(context).size.height/80,),
+
           Container(
+            width: MediaQuery.of(context).size.width/20,
+            margin: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width*.2),
+
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
-            decoration: BoxDecoration(
-                color: CustomColor.containerColor,
-                borderRadius: BorderRadius.circular(20),
-                border: Border.all(color: CustomColor.secondary)),
+            // decoration: BoxDecoration(
+            //     // color: CustomColor.containerColor,
+            //     color: Colors.white.withOpacity(.3),
+            //
+            //     borderRadius: BorderRadius.circular(20),
+            //     border: Border.all(color:Colors.white)),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 ElevatedButton(
+
                   style: ButtonStyle(
+                    backgroundColor:MaterialStateProperty.all<Color>(Colors.blueAccent) ,
                     foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
                   ),
                   onPressed: () {
@@ -274,6 +271,8 @@ String unitfo ='g';
                 ),
                 ElevatedButton(
                   style: ButtonStyle(
+                    backgroundColor:MaterialStateProperty.all<Color>(Colors.blueAccent) ,
+
                     foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
                   ),
                   onPressed:() {

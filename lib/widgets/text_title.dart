@@ -15,7 +15,7 @@ class TextTitle extends StatelessWidget {
       children: [
         Text(
           title,
-          style: CustomTextStyle.titleWhiteTextStyle,
+          style: CustomTextStyle(18,Colors.blueGrey).titleWhiteTextStyle,
         ),
         const SizedBox(
           height: 10,

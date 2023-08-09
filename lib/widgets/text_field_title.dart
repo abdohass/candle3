@@ -17,18 +17,27 @@ class TextFieldTitle extends StatefulWidget {
 class _TextFieldTitleState extends State<TextFieldTitle> {
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Row(
       children: [
-        Text(
-          widget.title,
-          style: CustomTextStyle.titleWhiteTextStyle,
+        Expanded(
+          child: SizedBox(
+            width: MediaQuery.of(context).size.width*.25,
+            height: MediaQuery.of(context).size.height*.5,
+            child: Text(
+
+
+              widget.title,
+              style: CustomTextStyle(16,Colors.blueGrey).titleWhiteTextStyle,
+            ),
+          ),
         ),
         // const SizedBox(
         //   height: 10,
         // ),
         Expanded(
           child: SizedBox(
-            width:  100,
+            height: MediaQuery.of(context).size.height/2,
+            width: MediaQuery.of(context).size.width*.3,
             child: TextField(
               maxLines: 1,
               onChanged: (_) {
@@ -41,8 +50,8 @@ class _TextFieldTitleState extends State<TextFieldTitle> {
             decoration: InputDecoration(
                 fillColor: Colors.white,
                 filled: true,
-                contentPadding:
-                const EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+                // contentPadding:
+                // const EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
                 border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10.0)),
                 labelStyle: CustomTextStyle.bodyTextStyle),

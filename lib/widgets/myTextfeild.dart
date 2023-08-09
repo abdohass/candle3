@@ -20,14 +20,15 @@ class _myTextfeildState extends State<myTextfeild> {
       children: [
         Text(
          widget.title,
-          style: CustomTextStyle.titleWhiteTextStyle,
+          style: CustomTextStyle(25,Colors.blueGrey).titleWhiteTextStyle
+          ,
         ),
-        const SizedBox(
-          height: 10,
-        ),
+        // const SizedBox(
+        //   height: 10,
+        // ),
         SizedBox(
-          width:  300,
-          child: TextField(
+          height: MediaQuery.of(context).size.height*.09,
+          width: MediaQuery.of(context).size.width*.5,          child: TextField(
             controller: widget.controller,
             maxLines: 1,
             onChanged: (_) {

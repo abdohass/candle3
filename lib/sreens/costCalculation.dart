@@ -710,7 +710,8 @@ class _CostCalculationState extends State<CostCalculation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: CustomColor.secondary,
+      backgroundColor: Color(0xff90B5EA),
+      //backgroundColor: CustomColor.secondary,
       appBar: AppBar(
         title: Text (" ${getLang(context, "cost calculator")}"),
       ),
@@ -721,12 +722,13 @@ class _CostCalculationState extends State<CostCalculation> {
             children: [
 
               Container(
-                height: 400,
+                height:MediaQuery.of(context).size.height*.5,
                 child: GridView.count(
+                  childAspectRatio: .9,
                   primary: false,
                   padding: const EdgeInsets.all(20),
                   crossAxisSpacing: 5,
-                  mainAxisSpacing: 5,
+                  mainAxisSpacing: 10,
                   crossAxisCount: 2,
                   physics:NeverScrollableScrollPhysics(),
 
@@ -736,7 +738,8 @@ class _CostCalculationState extends State<CostCalculation> {
                   children: <Widget>[
                     Container(
                       decoration: BoxDecoration(
-                          color: Colors.teal[200],
+                          color: Colors.white.withOpacity(.3),
+                          // color: Colors.teal[200],
                           borderRadius: BorderRadius.circular(20),
                           border: Border.all(color: Colors.white)),
 
@@ -744,12 +747,14 @@ class _CostCalculationState extends State<CostCalculation> {
                       padding: const EdgeInsets.only(top: 0),
 
                       //color: Colors.teal[100],
-                      height: 5,
+                      // height: 5,
                       // padding: const EdgeInsets.all(8),
                       // color: Colors.teal[100],
                       child:  Column(
                         children: [
-                          Text(" ${getLang(context, "wax calc")}"),
+                          Text(" ${getLang(context, "wax")}" ,
+                          style :TextStyle(color: Colors.white))
+                          ,
                           Expanded(
                             child: TextFieldTitle(
                               title: " ${getLang(context, 'wax wight')}"
@@ -768,9 +773,10 @@ class _CostCalculationState extends State<CostCalculation> {
 
                               },),
                           ),
+                          SizedBox(height: 5),
                           Expanded(
                             child: TextFieldTitle(
-                              title: " ${getLang(context, 'wax price')}"
+                              title: " ${getLang(context, 'wax price')},"
                               ,
                              onchang: () { setState(() {
 
@@ -788,16 +794,19 @@ class _CostCalculationState extends State<CostCalculation> {
 
                     ),
                     Container( decoration: BoxDecoration(
-                        color: Colors.teal[200],
+                        // color: Colors.teal[200],
+                        color: Colors.white.withOpacity(.3),
                         borderRadius: BorderRadius.circular(20),
                         border: Border.all(color: Colors.white)),
 
-                      padding: const EdgeInsets.all(8),
+                      // padding: const EdgeInsets.all(8),
 
                       child:  Column(
                         children: [
-                          Text(" ${getLang(context, "oil calc")}"),
+                          Text(" ${getLang(context, "oil")}"),
+
                           Expanded(
+
                             child: TextFieldTitle(
                               title: " ${getLang(context, 'oil wight')}"
                               ,
@@ -808,6 +817,7 @@ class _CostCalculationState extends State<CostCalculation> {
 
                               }, controller: oilWightController,),
                           ),
+                          SizedBox(height: 10),
                           Expanded(
                             child: TextFieldTitle(
                               title: " ${getLang(context, 'oil price')}"
@@ -829,14 +839,14 @@ class _CostCalculationState extends State<CostCalculation> {
                     ),
                     Container(
                       decoration: BoxDecoration(
-                          color: Colors.teal[200],
+                          color: Colors.white.withOpacity(.3),
                           borderRadius: BorderRadius.circular(20),
                           border: Border.all(color: Colors.white)),
-                      padding: const EdgeInsets.only(top: 10),
+                      // padding: const EdgeInsets.only(top: 10),
 
                       child:  Column(
                         children: [
-                          Text(" ${getLang(context, "jar calc")}"),
+                          Text(" ${getLang(context, "jar")}"),
                           Expanded(
                             child: TextFieldTitle(
                               title: " ${getLang(context, 'number of jar')}"
@@ -849,6 +859,7 @@ class _CostCalculationState extends State<CostCalculation> {
 
                               }, controller: jarnumController,),
                           ),
+                          SizedBox(height: 5),
                           Expanded(
                             child: TextFieldTitle(
                               title: " ${getLang(context, 'jar price')}",
@@ -869,15 +880,14 @@ class _CostCalculationState extends State<CostCalculation> {
                     ),
                     Container(
                       decoration: BoxDecoration(
-                          color: Colors.teal[200],
-                          borderRadius: BorderRadius.circular(20),
+                          color: Colors.white.withOpacity(.3),                          borderRadius: BorderRadius.circular(20),
                           border: Border.all(color: Colors.white)),
 
-                      padding: const EdgeInsets.only(top: 10),
+                      // padding: const EdgeInsets.only(top: 10),
 
                       child:  Column(
                         children: [
-                          Text(" ${getLang(context, " wick calc")}"),
+                          Text(" ${getLang(context, " wick")}"),
                           Expanded(
                             child: TextFieldTitle(
                               title: " ${getLang(context, " number of wick")}",
@@ -891,6 +901,7 @@ class _CostCalculationState extends State<CostCalculation> {
 
                               }, controller: wicknumController,),
                           ),
+                          SizedBox(height: 5),
                           Expanded(
                             child: TextFieldTitle(
                               title: " ${getLang(context, "wick price")}",
@@ -914,12 +925,12 @@ class _CostCalculationState extends State<CostCalculation> {
                   ],
                 ),
               ),
+              SizedBox(height: 30),
               Container(
-                padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 5),
-                width: 250,
+                padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+                width: MediaQuery.of(context).size.width*.7,
                 decoration: BoxDecoration(
-                    color: Colors.teal[200],
-                    borderRadius: BorderRadius.circular(20),
+                    color: Colors.white.withOpacity(.3),                    borderRadius: BorderRadius.circular(20),
                     border: Border.all(color: CustomColor.secondary)),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
