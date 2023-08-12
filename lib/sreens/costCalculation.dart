@@ -724,11 +724,11 @@ class _CostCalculationState extends State<CostCalculation> {
               Container(
                 height:MediaQuery.of(context).size.height*.5,
                 child: GridView.count(
-                  childAspectRatio: .9,
+                  childAspectRatio:1,
                   primary: false,
                   padding: const EdgeInsets.all(20),
-                  crossAxisSpacing: 5,
-                  mainAxisSpacing: 10,
+                  crossAxisSpacing: 15,
+                  mainAxisSpacing: 20,
                   crossAxisCount: 2,
                   physics:NeverScrollableScrollPhysics(),
 
@@ -739,21 +739,17 @@ class _CostCalculationState extends State<CostCalculation> {
                     Container(
                       decoration: BoxDecoration(
                           color: Colors.white.withOpacity(.3),
-                          // color: Colors.teal[200],
+
                           borderRadius: BorderRadius.circular(20),
                           border: Border.all(color: Colors.white)),
 
-                      // height: 50,
+
                       padding: const EdgeInsets.only(top: 0),
 
-                      //color: Colors.teal[100],
-                      // height: 5,
-                      // padding: const EdgeInsets.all(8),
-                      // color: Colors.teal[100],
                       child:  Column(
                         children: [
                           Text(" ${getLang(context, "wax")}" ,
-                          style :TextStyle(color: Colors.white))
+                          style :TextStyle(color: Colors.green.shade900))
                           ,
                           Expanded(
                             child: TextFieldTitle(
@@ -878,9 +874,11 @@ class _CostCalculationState extends State<CostCalculation> {
                         ],
                       ),
                     ),
+
                     Container(
                       decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(.3),                          borderRadius: BorderRadius.circular(20),
+                          color: Colors.white.withOpacity(.3),
+                          borderRadius: BorderRadius.circular(20),
                           border: Border.all(color: Colors.white)),
 
                       // padding: const EdgeInsets.only(top: 10),
@@ -925,9 +923,9 @@ class _CostCalculationState extends State<CostCalculation> {
                   ],
                 ),
               ),
-              SizedBox(height: 30),
+             SizedBox(height: 20),
               Container(
-                padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+                padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
                 width: MediaQuery.of(context).size.width*.7,
                 decoration: BoxDecoration(
                     color: Colors.white.withOpacity(.3),                    borderRadius: BorderRadius.circular(20),
